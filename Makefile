@@ -10,3 +10,5 @@ exec:
 clean:
 	# docker kill rest-example && docker rm -f rest-example && docker image rm test:latest
 	docker kill rest-example && docker rm -f rest-example 
+test: run log
+    
