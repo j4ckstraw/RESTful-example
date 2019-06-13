@@ -1,0 +1,20 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	server_name _;
+    
+    # http://flask.pocoo.org/docs/1.0/deploying/uwsgi/#configuring-nginx
+    location / {
+        try_files $uri @app;
+    }
+    location @app {
+        include uwsgi_params;
+        # uwsgi_pass unix:///tmp/uwsgi.sock;
+        uwsgi_pass 127.0.0.1:5000;
+    }
+    location /static {
+        alias /app/static;
+    }
+
+}
